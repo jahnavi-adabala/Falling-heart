@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smallreg-deployment
+  labels:
+    app: smallreg
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: smallreg
+  template:
+    metadata:
+      labels:
+        app: smallreg
+    spec:
+      containers:
+      - name: smallreg
+        image: username/my-flask-app:v1  # Use your Docker Hub image
+        ports:
+        - containerPort: 5000
+
+---
+# Service Configuration
+apiVersion: v1
+kind: Service
+metadata:
+  name: smallreg-service
+spec:
+  selector:
+    app: smallreg
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+  type: NodePort  # Expose externally for testing
