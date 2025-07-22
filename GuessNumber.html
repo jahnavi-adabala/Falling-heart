@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Enter a number between 1 and 10</h3>
+    <input id="num" type="number" placeholder="Enter here">
+    <button onClick="opr()">Check</button>
+
+    <p id="result"></p>
+    <p id="chancesLeft"></p>
+    <script>
+       let attempts=0;
+       const attemptsleft=3;
+       let guess=Math.floor(Math.random()* 10) + 1;
+       function opr()
+       {
+       let a=parseInt(document.getElementById("num").value);
+       attempts++;
+
+       if(a===guess)
+       {
+        document.getElementById("result").innerText="Correct Guess";
+        document.getElementById("chancesLeft").innerText=" ";
+
+       }
+       else if(attempts<attemptsleft)
+       {
+        document.getElementById("result").innerText="Wrong Guess!Try Again";
+        document.getElementById("chancesLeft").innerText=`Attempts Left:${attemptsleft-attempts}`;
+       }
+       else
+       {
+        document.getElementById("result").innerText=`Game over!The number was ${guess}`;
+        document.getElementById("chancesLeft").innerText="No chances Left";
+
+       }
+
+       }
+
+
+
+    </script>
+</body>
+</html>

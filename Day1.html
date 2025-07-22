@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Calculator</title>
+</head>
+<body>
+
+    <input type="number" id="n1" placeholder="Enter n1">
+    <input type="text" id="operation" placeholder="Type operation (add, sub, mul, div)">
+    <input type="number" id="n2" placeholder="Enter n2">
+    
+    <button onclick="opr()">Calculate</button>
+
+    <h3 id="result"></h3>
+
+<script>
+    function opr() {
+        // Get input values
+        let a = parseFloat(document.getElementById("n1").value);
+        let b = parseFloat(document.getElementById("n2").value);
+        let op = document.getElementById("operation").value.toLowerCase();
+
+        let result;
+
+        if (op === "add") {
+            result = a + b;
+        } else if (op === "sub") {
+            result = a - b;
+        } else if (op === "mul") {
+            result = a * b;
+        } else if (op === "div") {
+            if (b !== 0) {
+                result = a / b;
+            } else {
+                result = "Cannot divide by zero";
+            }
+        } else {
+            result = "Invalid operation. Use add, sub, mul, or div.";
+        }
+
+        // Show result
+        document.getElementById("result").innerText = "Result: " + result;
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="elig" placeholder="Enter Your age" type="Number">
+    <button onclick="opr()" id="operation">Check Eligibility</button>
+    <script>
+        function opr()
+        {
+        let a=parseFloat(document.getElementById("elig").value);
+        let c=document.getElementById("operation").value;
+        if(a>18)
+    {
+       alert("Hoorah!Your are eligible for Vote");
+    }
+    else{
+        alert("Your not eligible");
+    }
+    
+}
+    </script>
+</body>
+</html>
