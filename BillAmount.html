@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="bill" type="number" placeholder="Enter the bill ">
+    <label>Tip Percent:</label>
+    <select id="tip">
+        <option value="0.1">10%</option>
+        <option value="0.15">15%</option>
+        <option value="0.2">20%</option>
+    </select>
+  <button id="calculateTip">Calculate tip</button>
+    <p id="tipresult"></p>
+    <p id="totalresult"></p>
+
+    <script>
+        function calculateTip()
+        {
+            let a=parseFloat(document.querySelector("#bill").value);
+            let b=parseFloat(document.querySelector("#tip").value);
+
+            if(isNaN(a)|| a<=0)
+        { 
+            alert("Please return a valid bill amount");
+            return ;
+        }
+
+        const ttip=a*b;
+        const total=a+ttip;
+
+        document.querySelector("#tipresult").innerText=`Tip:${ttip}`;
+        document.querySelector("#totalresult").innerText=`Total Bill:${total}`;
+       
+        }
+        document.querySelector('#calculateTip').addEventListener('click', calculateTip);
+    </script>
+
+</body>
+</html>
