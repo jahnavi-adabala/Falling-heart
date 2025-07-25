@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Show/Hide Div</title>
+  <style>
+    #myBox {
+      width: 200px;
+      height: 100px;
+      background-color: skyblue;
+      display: none; /* Initially hidden */
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="toggleBtn">Show Box</button>
+  <div id="myBox"></div>
+
+  <script>
+    const button = document.getElementById("toggleBtn");
+    const box = document.getElementById("myBox");
+
+    button.addEventListener("click", () => {
+      if (box.style.display === "none") {
+        box.style.display = "block";
+        button.innerText = "Hide Box";
+      } else {
+        box.style.display = "none";
+        button.innerText = "Show Box";
+      }
+    });
+  </script>
+
+</body>
+</html>
