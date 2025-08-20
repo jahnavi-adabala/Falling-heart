@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Filter Students</title>
+</head>
+<body>
+  <h2>Filter Students by Grade</h2>
+
+  <input type="number" id="minGrade" placeholder="Enter minimum grade" />
+  <button id="filterBtn">Filter</button>
+
+  <ul id="studentList"></ul>
+
+  <script>
+    const students = [
+      { name: "Tarun", grade: 85 },
+      { name: "Sanjay", grade: 98 },
+      { name: "Nicey", grade: 99 },
+      { name: "Baby", grade: 87 },
+      { name: "Murali", grade: 80 },
+      { name: "Pavan", grade: 75 }
+    ];
+
+    const input = document.getElementById("minGrade");
+    const button = document.getElementById("filterBtn");
+    const list = document.getElementById("studentList");
+
+    button.addEventListener("click", () => {
+      const min = Number(input.value);
+
+      if (input.value === "") {
+        alert("Please enter a grade value");
+        return;
+      }
+
+      const filtered = students.filter(student => student.grade >= min);
+      list.innerHTML = "";
+
+      if (filtered.length === 0) {
+        list.innerHTML = "<li>No Students Found</li>";
+        return;
+      }
+
+      filtered.forEach(student => {
+        const li = document.createElement("li");
+        li.textContent = `${student.name} - Grade: ${student.grade}`;
+        list.appendChild(li);
+      });
+    });
+  </script>
+</body>
+</html>

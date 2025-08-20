@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 10px;
+    }
+    input, button {
+      margin: 5px;
+      padding: 8px;
+    }
+    #output {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+      background: #bc4848;
+    }
+  </style>
+</head>
+<body>
+  <h2>🎓 Student Management App (ES6 Features)</h2>
+
+  <h3>Add Student</h3>
+  <input type="text" id="name" placeholder="Name">
+  <input type="number" id="grade" placeholder="Grade">
+  <input type="text" id="branch" placeholder="Branch">
+  <button onclick="addStudent()">Add</button>
+
+  <h3>Other Actions</h3>
+  <button onclick="printStudents()">Show All Students</button><br>
+
+  <input type="number" id="minGrade" placeholder="Min Grade">
+  <button onclick="filterByGrade()">Filter by Grade</button><br>
+
+  <input type="text" id="checkName" placeholder="Check Student Name">
+  <button onclick="checkStudent()">Check Student</button><br>
+
+  <button onclick="mergeStudents()">Merge New Students</button>
+
+  <div id="output"></div>
+
+  <script>
+    //  Student Data (array of objects)
+    let students = [
+      { name: "Tarun", grade: 85, branch: "CSE" },
+      { name: "Sanjay", grade: 72, branch: "ECE" },
+      { name: "Nicey", grade: 95, branch: "IT" }
+    ];
+
+    const output = document.getElementById("output");
+
+    //  Function 1: Add Student
+    function addStudent() {
+      const name = document.getElementById("name").value || "Unknown";
+      const grade = Number(document.getElementById("grade").value) || 0;
+      const branch = document.getElementById("branch").value || "NA";
+
+      students.push({ name, grade, branch });
+      output.innerHTML = `<p> ${name} added successfully!</p>`;
+    }
+
+    //  Function 2: Print All Students
+    function printStudents() {
+      let html = "<h4>  All Students:</h4><ul>";
+      students.map(stu => {
+        html += `<li>${stu.name} - Grade: ${stu.grade}, Branch: ${stu.branch}</li>`;
+      });
+      html += "</ul>";
+      output.innerHTML = html;
+    }
+
+    //  Function 3: Filter Students
+    function filterByGrade() {
+      const min = Number(document.getElementById("minGrade").value);
+      const filtered = students.filter(stu => stu.grade >= min);
+
+      if (filtered.length === 0) {
+        output.innerHTML = `<p> No students found with grade ≥ ${min}</p>`;
+        return;
+      }
+
+      let html = `<h4> Students with grade ≥ ${min}:</h4><ul>`;
+      filtered.forEach(stu => {
+        html += `<li>${stu.name} - Grade: ${stu.grade}</li>`;
+      });
+      html += "</ul>";
+      output.innerHTML = html;
+    }
+
+    //  Function 4: Check if student exists
+    function checkStudent() {
+      const name = document.getElementById("checkName").value;
+      const names = students.map(stu => stu.name);
+
+      if (names.includes(name)) {
+        output.innerHTML = `<p> ${name} exists in the list.</p>`;
+      } else {
+        output.innerHTML = `<p> ${name} not found.</p>`;
+      }
+    }
+
+    //  Function 5: Merge new students (dummy data)
+    function mergeStudents() {
+      const newStudents = [
+        { name: "Murali", grade: 88, branch: "EEE" },
+        { name: "Pavan", grade: 76, branch: "MECH" }
+      ];
+      students = [...students, ...newStudents]; // spread operator
+
+      let html = "<h4> Updated Student List (Merged):</h4><ul>";
+      students.forEach(stu => {
+        html += `<li>${stu.name} - Grade: ${stu.grade}, Branch: ${stu.branch}</li>`;
+      });
+      html += "</ul>";
+      output.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
